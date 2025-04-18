@@ -24,6 +24,23 @@ class Complex:
 
     def __add__(self, other):
         return Complex(self._real + other._real, self._imag + other._imag)
+    
+    def __sub__(self, other):
+        return Complex(self._real - other._real, self._imag - other._imag)
+
+    def __mul__(self, other):
+        r = self._real * other._real - self._imag * other._imag
+        i = self._real * other._imag + self._imag * other._real
+        return Complex(r, i)
+
+    def __truediv__(self, other):
+        divisor = other._real ** 2 + other._imag ** 2
+        r = (self._real * other._real + self._imag * other._imag) / divisor
+        i = (self._imag * other._real - self._real * other._imag) / divisor
+        return Complex(r, i)
+
+    def mod(self):
+        return Complex(math.sqrt(self._real ** 2 + self._imag ** 2), 0)
 
 
 
@@ -35,6 +52,12 @@ def main():
     b = Complex(5,6)
 
     print(a+b)
+    print(a-b)
+    print(a*b)
+    print(a/b)
+    print(a.mod())
+    print(b.mod())
+
     
 
 
